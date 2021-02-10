@@ -1,0 +1,131 @@
+% \documentclass[aps, prd, twocolumn, groupedaddress]{revtex4-2}
+\documentclass[twocolumn, prd, nobalancelastpage, superscriptaddress]{revtex4}
+% \documentclass[aps,reprint,twocolumn,groupedaddress,amsmath,amssymb, nobalancelastpage]{revtex4-1}
+
+\usepackage{amsmath,amssymb,latexsym}
+\usepackage{graphicx,float}
+\usepackage{blindtext,xcolor}
+
+\usepackage{silence}
+\WarningFilter{revtex4-2}{Repair the float}
+
+\usepackage{setspace}
+
+\newcommand{\alarm}[1]{\textcolor{red}{#1}}
+\newcommand{\maybe}[1]{\textcolor{orange}{#1}}
+
+\newcommand{\bs}{\boldsymbol}
+
+% \DeclareMathSizes{10}{10}{7}{5}
+
+
+\begin{document}
+
+\title{Ion-sound instability in dusty plasma}
+
+\author{Y. Susayev}
+\affiliation{V.\thinspace N. Karazin Kharkiv National University, Kharkiv, Ukraine}
+% \email[]{yaroslav.susayev@gmail.com}
+\author{V. Olshansky}
+\affiliation{National Science Center "Kharkiv Institute of Physics and Technology", Kharkiv, Ukraine}
+% \email[]{olshansky@ipp.kharkov.ua}
+
+\date{\today}
+
+% {\footnotesize{Problems of Atomic Science and Technology, XX.XX, 2020.}}
+
+{\let\newpage\relax\maketitle}
+
+\section*{Abstract}
+% \vspace{-4mm}
+% \begin{flushleft}
+%     \begin{spacing}{0.8}
+%         \noindent\textbf{\footnotesize{The computer simulation results of The ion-sound instability evolution studies in the dusty plasma are presented.}}
+%     \end{spacing}  
+% \end{flushleft}
+\vspace{-4mm}
+\noindent Micron-sized massive charged particles called \textit{dust grains} significantly affect the collective processes, that take place in complex plasmas (comprising electrons, ions, neutral atoms, and dust grains). These particles change both the spectra of oscillations and instabilities that exist in plasmas without dust, and generate new branches of oscillations and new specific instabilities. The reason is that the extremely massive charged dust grains significantly change the characteristic spatiotemporal scales in the plasma. 
+
+% \textit{In particular, as the charge composition of the plasma changes, the dispersion of ion-sound oscillations changes too as well and a new low-frequency branch appears, known as dusty sound.}
+
+One of the main areas of research in present-day dusty plasma physics is the study of instabilities, which occur in the large-amplitude external electromagnetic field. The present work focuses on the evolution of the ion-sound instability in dusty plasma. The “Particle–Particle–Particle–Mesh” (P$^3$M) model \cite{Hockney81} is used for self-consistent modelling of low-frequency ion-sound parametric instability in dusty plasma, and the appropriate kinetic algorythm based on the combination of the “Particle-In-Cell” (PIC) and “Monte-Carlo-Collisions” (MCC) codes is developed \cite{Olshan12}.
+
+% This area also \alarm{studies} interactions between particles in plasma, forces acting on a dust grain in plasma, low-frequency ion-sound instability\maybe{,} etc.
+
+To describe the motion of \maybe{dust} particles in time, the direct implicit method of Langdon-Friedman is applied to PIC algorythm. The \maybe{essence} of this method is that the recursive filtering of the electric field suppresses high-frequency modes. The following implicit finite-difference scheme is used to integrate the equations of motion in a cylindrical coordinate system
+\begin{equation*}
+    \begin{cases}
+        \bs{v}_{n+\frac{1}{2}}-\bs{v}_{n-\frac{1}{2}} = \bs{a}_n\Delta t + \beta (\bs{v}_{n+\frac{1}{2}}+\bs{v}_{n-\frac{1}{2}})\times \bs{B}(\bs{x}_n),\\
+        \bs{x}_{n+1} = \bs{x}_n + \bs{v}_{n+\frac{1}{2}}\Delta t,\\
+        \bs{a}_n = \frac{1}{2}\big(\frac{q}{m}\bs{E}_{n+1}(\bs{x}_{n+1}) + \bs{a}_{n-1}\big),
+    \end{cases}
+\end{equation*}
+% where $\bs{v}_{n+\frac{1}{2}}$ and $\bs{v}_{n-\frac{1}{2}}$ are \alarm{velocities}, $\bs{a}_n$ is a particle acceleration, $\Delta t$ is a time step, \alarm{$\beta = q\Delta t/2mc$}, $\bs{B}(\bs{x}_n)$ is a magnetic field, $\bs{x}_n$ is a coordinate, $\bs{x}_{n+1}$ is a coordinate, $q$ is a charge value, $m$ is a mass, $\bs{E}_{n+1}$ is an electric field, $\bs{a}_{n+1}$ is a particle acceleration.
+where $n$ is \maybe{the} step number, $\Delta t \approx 10^{-11}\div 10^{-13}$ \textit{seconds} is \maybe{the} time step, $\beta \equiv q\Delta t/2mc$.
+
+% In this work, the forces acting on a dust particle in plasma are investigated. A detailed knowledge of the forces \maybe{leads to} understanding and controlling the transport of the dust grains and the equilibrium states. The total force acting on a dust grain $\bs{F}_d$ can be written as a vector sum
+To understand and control the transport of dust grains and \maybe{the equilibrium states}, the forces acting on a dust particle in plasma are also investigated. The total force $\bs{F}_d$ acting on a dust grain can be written as a vector sum
+\begin{equation*}
+    \bs{F}_d = \bs{F}_{\text{fric}, i} + \bs{F}_{\text{fric}, n} + \bs{F}_{L} + \bs{F}_{g},
+\end{equation*}
+where $\bs{F}_{\text{fric}, i}$ is the ion-dust fiction force, $\bs{F}_{\text{fric}, n}$ is the neutral-dust fiction force, $\bs{F}_{L}$ is the Lorentz force, $\bs{F}_{g}$ is the gravitational force. 
+The analytical expression for the ion-dust fiction force $\bs{F}_{\text{fric}, i}$ \maybe{was} found in \cite{Khrapak04, Hutchinson05}. The neutral-dust friction force was calculated assuming the cross section of the hard spheres collision \maybe{to be} constant and the distribution of neutral particles \maybe{to be} Maxwellian.
+
+% The neutral-dust friction force $\bs{F}_{\text{fric}, n}$ \maybe{was} found in in \cite{Baines65} and calculated assuming the cross section of the hard spheres collision \maybe{to be} constant and the distribution of neutral particles \maybe{to be} Maxwellian.
+
+% The analytical expression for the ion-dust fiction force $\bs{F}_{\text{fric}, i}$ was found in \alarm{[6, 7]}. The neutral-dust friction force $\bs{F}_{\text{fric}, n}$ was calculated in \alarm{[12]} considering the cross section of the collision of hard spheres to be constant and the distribution of neutral particles to be Maxwellian.
+
+% \begin{figure}[h!]
+%     \includegraphics[scale=0.3]{forces.png}
+%     \caption{Ion-dust friction force.}
+% \end{figure}
+
+The ion-sound instability accompanied by electromagnetic waves of large amplitude in magnetized dusty plasma is studied with the parameters, which are typical for dusty plasma experiments. One of the results of computer modelling of the ion-sound instability evolution in the external alternating electric field is presented in the following figure
+
+\begin{figure}[h]\label{fig:energy}
+    \centering
+    \includegraphics[scale=0.2]{energy.png}
+    % \includegraphics[scale=0.25]{energy.png}
+    \caption{The energy density of the electric field as a function of time. The frequency and increment of energy density growth in this figure corresponds to the double frequency and increment of growth of ion-sound instability of dusty plasma.}
+\end{figure} 
+
+% The study shows, that the neutral gas in the dusty plasma accompanied by the external electric field \maybe{creates} the electron and ions drifts in the opposite directions. Under certain conditions, this relative drift is sufficient to excite ion-sound waves. The negatively charged particles facilitate the excitation of unstable waves and the critical amplitude of the external electromagnetic field decreases when the density of negatively charged particles increases.
+
+The study shows, that the combination of PIC and MCC simulation methods allows us to obtain the clear picture of the ion-sound instability phenomena in dusty plasma. With the help of our model, anybody can estimate the temporal evolution of the ion temperature, energy density of the electric field, the ion velocity distribution, etc. The model proves to be computationally fast and accurate, but inapplicable when the plasma is highly inhomogeneous and non-Maxwellian.
+
+% \begin{figure}[h]\label{fig:energy_rea;}
+%     \centering
+%     \includegraphics[scale=0.2]{energy_real.png}
+%     % \caption{Electric field energy as a function of time.}
+% \end{figure}
+% \vspace{-9mm}
+% \begin{figure}[h]\label{fig:ion_temp}
+%     \centering
+%     \includegraphics[scale=0.23]{temperature.png}
+%         \caption{Temporal evolution of electric field energy (on the top) and ion temperature (on the bottom) of unstable ion-sound oscillations. The growth of the energy density increment and frequency corresponds to the double frequency and increment of growth of ion-sound instability of dusty plasma. The ion temperature begins to fluctuate over time and at the end of the simulation reaches the level, which is 1.5 times higher than the initial one.}
+%     % \caption{Ion temperature evolution. One can see that the ion temperature begins to fluctuate over time and at the end of the simulation reaches the level, which is 1.5 times higher than the initial one.}
+% \end{figure}
+% % \begin{figure}[h]\label{fig:energy}
+% %     \centering
+% %     \includegraphics[scale=0.31]{energy.png}
+% %     \caption{Temporal evolution of electric field energy (on the top) and frequency spectrum (on the bottom) of unstable ion-sound oscillations. The growth of the energy density increment and frequency corresponds to the double frequency and increment of growth of ion-sound instability of dusty plasma.}
+% % \end{figure}
+% % \begin{figure}[h]\label{fig:distrib}
+% %     \centering
+% %     \includegraphics[scale=0.3]{distrib.png}
+% %     \caption{Function of ion velocity distribution. One can see that over time of ion velocity distribution function ceases to be Maxwellian over time.}
+% % \end{figure}
+
+
+\bibliographystyle{apsrev4-1}
+\footnotesize{
+\bibliography{bibliography} 
+}
+% If you have acknowledgments, this puts in the proper section head.
+% \begin{acknowledgments}
+%     This work has been carried out within the framework of the EUROfusion Consortium and has the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 and 2019-2020 under grant agreement No 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission. Work performed under EUROfusion WP EDU.
+% \end{acknowledgments}
+
+% Create the reference section using BibTeX:
+
+\end{document}
